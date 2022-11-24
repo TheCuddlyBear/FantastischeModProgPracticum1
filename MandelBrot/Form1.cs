@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace MandelBrot
 {
     public partial class Form1 : Form
@@ -7,9 +9,32 @@ namespace MandelBrot
             InitializeComponent();
         }
 
-        private Point genMandelNumber(int a, int b, int x, int y)
+        private PointF genMandelPunt(float a, float b, float x, float y)
         {
-            return new Point((a * a - b * b + x), (2 * a * b + y));
+            return new PointF((a * a - b * b + x), (2 * a * b + y));
+        }
+
+        private int genMandelNumber(int maxIterations, float x, float y)
+        {
+            float a = 0f;
+            float b = 0f;
+            int count = 0;
+            PointF startingPoint = new PointF(x, y);
+            double distanceToPoint = 0;
+            do
+            {
+                PointF mandelPunt = genMandelPunt(a, b, x, y);
+                Debug.Print("Mandelpunt" + mandelPunt.ToString());
+                distanceToPoint = distance(mandelPunt, startingPoint);
+                a = a + mandelPunt.X;
+                b = b + mandelPunt.Y;
+                Debug.Print("A: " + a.ToString());
+                Debug.Print("B: " + b.ToString());
+                count++;
+                Debug.Print("Distance: " + distanceToPoint.ToString());
+                Debug.Print("Count: " + count.ToString());
+            } while (count < maxIterations && distanceToPoint < 2);
+                return count;
         }
 
         private double distance(PointF p1, PointF p2)
@@ -44,7 +69,9 @@ namespace MandelBrot
         }
 
         private void button1_Click(object sender, EventArgs e)
-        
+        {
+            int count = genMandelNumber(10000, 0.5f, 0.8f);
+            label1.Text = count.ToString();
         }
     }
 }
