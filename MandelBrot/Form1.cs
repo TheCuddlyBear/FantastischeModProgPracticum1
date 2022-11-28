@@ -25,7 +25,7 @@ namespace MandelBrot
             {
                 PointF mandelPunt = genMandelPunt(a, b, x, y);
                 Debug.Print("Mandelpunt" + mandelPunt.ToString());
-                distanceToPoint = distance(mandelPunt, startingPoint);
+                distanceToPoint = Distance(mandelPunt, startingPoint);
                 a = a + mandelPunt.X;
                 b = b + mandelPunt.Y;
                 Debug.Print("A: " + a.ToString());
@@ -37,7 +37,7 @@ namespace MandelBrot
                 return count;
         }
 
-        private double distance(PointF p1, PointF p2)
+        private double Distance(PointF p1, PointF p2)
         {
             double p1X = Convert.ToDouble(p1.X);
             double p1Y = Convert.ToDouble(p1.Y);
@@ -48,30 +48,51 @@ namespace MandelBrot
             return Math.Sqrt(dX + dY);
         }
 
-        private void genImage()
+        private Bitmap genImage(Size size, float minX, float maxX, float minY, float maxY, int maxIterations)
         {
-            int midX = Convert.ToInt32(midXTb.Text);
-            int midY = Convert.ToInt32(midYTb.Text);
-            int scaleFactor = Convert.ToInt32(scaleFactorTb.Text);
-            int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
+            var mandelbrotBitmap = new Bitmap(size.Width, size.Height);
+            for (int dy = 0; dy < size.Height; dy++)
+            {
+                for (int dx = 0; dx < size.Width; dx++)
+                {
+                    float x = minX + ((maxX - minX) * dx) / (size.Width - 1);
+                    float y = minY + ((maxY - minY) * dy) / (size.Width - 1);
 
-            int xRange = mandelBrotCanvas.Width * scaleFactor;
-            int yRange = mandelBrotCanvas.Height * scaleFactor;
+                    int mandelGetal = genMandelNumber(maxIterations, x, y);
 
-            int minX = 0 - (xRange / 2);
-            int maxX = xRange / 2;
-            int minY = 0 - (yRange / 2);
-            int maxY = yRange / 2;
+                    if (mandelGetal % 2 == 0)
+                    {
+                        mandelbrotBitmap.SetPixel(dx, dy, Color.Black);
+                    }
+                    else
+                    {
+                        mandelbrotBitmap.SetPixel(dx, dy, Color.White);
+                    }
 
+                }
+            }
 
-
+            return mandelbrotBitmap;
 
         }
 
+        
+
         private void button1_Click(object sender, EventArgs e)
         {
-            int count = genMandelNumber(10000, 0.5f, 0.8f);
-            label1.Text = count.ToString();
+            float midX = float.Parse(midXTb.Text);
+            float midY = float.Parse(midYTb.Text);
+            float scaleFactor = float.Parse(scaleFactorTb.Text);
+            int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
+
+            float xRange = mandelBrotCanvas.Width * scaleFactor;
+            float yRange = mandelBrotCanvas.Height * scaleFactor;
+
+            float minX = 0 - (xRange / 2);
+            float maxX = (xRange / 2) + 0;
+            float minY = 0 - (yRange / 2);
+            float maxY = (yRange / 2) + 0;
+
         }
     }
 }
