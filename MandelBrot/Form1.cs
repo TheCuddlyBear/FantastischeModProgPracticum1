@@ -75,27 +75,6 @@ namespace MandelBrot
             return Color.FromArgb(76, 59, 77);
         }
 
-        private Color getColor(double i, double iterations)
-        {
-            double ratio = i / (double)(iterations);
-            int col = (int)(i / iterations * 255);
-            int alpha = 255;
-
-            if (ratio >= 0 && ratio < 0.25)
-                return Color.FromArgb(alpha, col, col / 5, 0);
-
-            if (ratio >= 0.25 && ratio < 0.50)
-                return Color.FromArgb(alpha, col, col / 4, 0);
-
-            if (ratio >= 0.50 && ratio < 0.75)
-                return Color.FromArgb(alpha, col, col / 3, 0);
-
-            if (ratio >= 0.75 && ratio < 1)
-                return Color.FromArgb(alpha, col, col / 2, 0);
-
-            return Color.Black; //color of the set itself
-        }
-
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
             start = DateTime.Now;
