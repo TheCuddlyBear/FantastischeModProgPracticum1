@@ -37,7 +37,7 @@ namespace MandelBrot
                 Debug.Print("A: " + a.ToString());
                 Debug.Print("B: " + b.ToString());
                 count++;
-                Debug.Print("Distance: " + distanceToPoint.ToString());
+                Debug.Print("Afstand: " + distanceToPoint.ToString());
                 Debug.Print("Count: " + count.ToString());
             } while (count < maxIterations && distanceToPoint < 2);
                 return count;
