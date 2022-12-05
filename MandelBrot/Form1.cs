@@ -1,10 +1,15 @@
 using System.Diagnostics;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace MandelBrot
 {
     public partial class Form1 : Form
     {
+
+        public TimeSpan duration;
+        public DateTime start;
+
         public Form1()
         {
             InitializeComponent();
@@ -93,6 +98,8 @@ namespace MandelBrot
 
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
+            start = DateTime.Now;
+            timer1.Start();
             float width = Convert.ToSingle(size.Width);
             float height = Convert.ToSingle(size.Height);
 
@@ -131,7 +138,7 @@ namespace MandelBrot
                     }
                     else
                     {
-                        Color color = getColor(1, iteration);
+                        Color color = iteration % 2 == 0 ? Color.Yellow : Color.Green;
                         bmp.SetPixel(dx, dy, color);
                     }
 
@@ -139,6 +146,8 @@ namespace MandelBrot
 
 
             }
+            timer1.Stop();
+            statusLabel.Text = $"Time taken to generate: {duration.TotalMilliseconds} ms";
             return bmp;
         }
 
@@ -146,6 +155,7 @@ namespace MandelBrot
 
         private void button1_Click(object sender, EventArgs e)
         {
+            statusLabel.Text = "Generating image...";
             float midX = float.Parse(midXTb.Text);
             float midY = float.Parse(midYTb.Text);
             float scaleFactor = float.Parse(scaleFactorTb.Text);
@@ -155,6 +165,22 @@ namespace MandelBrot
 
             mandelBrotCanvas.Image = bmp;
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            duration = DateTime.Now - start;
+        }
+
+        private void saveCurrentImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = @"PNG|*.png" })
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    mandelBrotCanvas.Image.Save(saveFileDialog.FileName);
+                }
+            }
         }
     }
 }
