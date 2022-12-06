@@ -15,55 +15,6 @@ namespace MandelBrot
             InitializeComponent();
         }
 
-        /*
-        private PointF genMandelPunt(float a, float b, float x, float y)
-        {
-            return new PointF((a * a - b * b + x), (2 * a * b + y));
-        }
-
-        private int genMandelNumber(int maxIterations, float x, float y)
-        {
-            float a = 0f;
-            float b = 0f;
-            int count = 0;
-            PointF startingPoint = new PointF(x, y);
-            double distanceToPoint = 0;
-            do
-            {
-                PointF mandelPunt = genMandelPunt(a, b, x, y);
-                Debug.Print("Mandelpunt" + mandelPunt.ToString());
-                distanceToPoint = Distance(mandelPunt, startingPoint);
-                a = a + mandelPunt.X;
-                b = b + mandelPunt.Y;
-                Debug.Print("A: " + a.ToString());
-                Debug.Print("B: " + b.ToString());
-                count++;
-                Debug.Print("Afstand: " + distanceToPoint.ToString());
-                Debug.Print("Count: " + count.ToString());
-            } while (count < maxIterations && distanceToPoint < 2);
-                return count;
-        }
-        
-
-        private double Distance(PointF p1, PointF p2)
-        {
-            double p1X = Convert.ToDouble(p1.X);
-            double p1Y = Convert.ToDouble(p1.Y);
-            double p2X = Convert.ToDouble(p2.X);
-            double p2Y = Convert.ToDouble(p2.Y);
-            double dX = Math.Pow((p1X - p2X), 2);
-            double dY = Math.Pow((p1Y - p2Y), 2);
-            return Math.Sqrt(dX + dY);
-        }
-        */
-
-        public Color GetColor(int iterations, int maxIterations)
-        {
-            //TODO: Color
-
-            return Color.Black;
-        }
-
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
             start = DateTime.Now;
@@ -80,31 +31,31 @@ namespace MandelBrot
             float maxY = ((yRange / 2) + midY) > 2 ? 2 : (yRange / 2) + midY;
 
 
-            Bitmap bmp = new Bitmap(size.Width, size.Height);
+            Bitmap mandelBitmap = new Bitmap(size.Width, size.Height);
             for(int dy = 0; dy < size.Height; dy++)
             {
                 for(int dx = 0; dx < size.Width; dx++)
                 {
-                    double x = minX + ((maxX - minX) * dx) / (size.Width - 1);
-                    double y = minY + ((maxY - minY) * dy) / (size.Height - 1);
+                    double x = minX + (maxX - minX) * dx / (size.Width - 1);
+                    double y = minY + (maxY - minY) * dy / (size.Height - 1);
 
                     double a = x; double b = y;
                     int iteration = 0;
                     do
                     {
-                        // use tuples for iteration
                         (a, b) = (a * a - b * b + x, 2 * a * b + y);
                         iteration++;
                     } while (iteration <= maxIterations && a * a + b * b < 4);
                     if (iteration > maxIterations)
                     {
-                        // interior color
-                        bmp.SetPixel(dx, dy, Color.Black);
+                        mandelBitmap.SetPixel(dx, dy, Color.Black);
                     }
                     else
                     {
-                        Color color = iteration % 2 == 0 ? Color.Yellow : Color.Green;
-                        bmp.SetPixel(dx, dy, color);
+                        Complex zn = new Complex(a, b);
+                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn)))/Math.Log(2);
+                        Color color = Utils.ColorFromHSV(0.95 + 10 * colorAlgorithm, 0.6, 1.0);
+                        mandelBitmap.SetPixel(dx, dy, color);
                     }
 
                 }
@@ -113,10 +64,8 @@ namespace MandelBrot
             }
             timer1.Stop();
             statusLabel.Text = $"Time taken to generate: {duration.TotalMilliseconds} ms";
-            return bmp;
+            return mandelBitmap;
         }
-
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -139,13 +88,7 @@ namespace MandelBrot
 
         private void saveCurrentImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = @"PNG|*.png" })
-            {
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    mandelBrotCanvas.Image.Save(saveFileDialog.FileName);
-                }
-            }
+            Utils.SavePictureBoxImage(mandelBrotCanvas);
         }
 
         private void infoOverMandelbrotToolStripMenuItem_Click(object sender, EventArgs e)
