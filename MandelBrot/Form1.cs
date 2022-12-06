@@ -19,12 +19,16 @@ namespace MandelBrot
         {
             start = DateTime.Now;
             timer1.Start();
+
+            //converting the width and height to floats
             float width = Convert.ToSingle(size.Width);
             float height = Convert.ToSingle(size.Height);
 
+            // calculating the ranges
             float xRange = width * scaleFactor;
             float yRange = height * scaleFactor;
 
+            // Calculating the minimum of x and y, which can never exceed the intervals [-2,1] and [-2, 2]
             float minX = (midX - (xRange / 2)) < -2 ? -2 : midX - (xRange / 2);
             float maxX = ((xRange / 2) + midX) > 1 ? 1 : (xRange / 2) + midX;
             float minY = (midY - (yRange / 2)) < -2 ? -2 : midY - (yRange / 2);
@@ -32,32 +36,33 @@ namespace MandelBrot
 
 
             Bitmap mandelBitmap = new Bitmap(size.Width, size.Height);
+
+            // checking each x and y in the bitmap and generating its color
             for(int dy = 0; dy < size.Height; dy++)
             {
                 for(int dx = 0; dx < size.Width; dx++)
                 {
+                    int iteration = 0;
                     double x = minX + (maxX - minX) * dx / (size.Width - 1);
                     double y = minY + (maxY - minY) * dy / (size.Height - 1);
 
                     double a = x; double b = y;
-                    int iteration = 0;
                     do
                     {
-                        (a, b) = (a * a - b * b + x, 2 * a * b + y);
+                        (a, b) = (a * a - b * b + x, 2 * a * b + y); // tuple for generating a and b
                         iteration++;
                     } while (iteration <= maxIterations && a * a + b * b < 4);
-                    if (iteration > maxIterations)
+                    if (iteration < maxIterations)
                     {
-                        mandelBitmap.SetPixel(dx, dy, Color.Black);
+                        Complex zn = new Complex(a, b);
+                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn))) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia)
+                        Color color = Utils.ColorFromHSV(0.95 + 10 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
+                        mandelBitmap.SetPixel(dx, dy, color);
                     }
                     else
                     {
-                        Complex zn = new Complex(a, b);
-                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn)))/Math.Log(2);
-                        Color color = Utils.ColorFromHSV(0.95 + 10 * colorAlgorithm, 0.6, 1.0);
-                        mandelBitmap.SetPixel(dx, dy, color);
+                        mandelBitmap.SetPixel(dx, dy, Color.Black);
                     }
-
                 }
 
 
@@ -88,7 +93,7 @@ namespace MandelBrot
 
         private void saveCurrentImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utils.SavePictureBoxImage(mandelBrotCanvas);
+            Utils.SavePictureBoxImage(mandelBrotCanvas); // See Utils class for the code
         }
 
         private void infoOverMandelbrotToolStripMenuItem_Click(object sender, EventArgs e)
