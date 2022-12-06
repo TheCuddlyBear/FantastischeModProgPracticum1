@@ -147,5 +147,13 @@ namespace MandelBrot
                 }
             }
         }
+
+        private void infoOverMandelbrotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo.UseShellExecute = true;
+            process.StartInfo.FileName = "https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set";
+            process.Start();
+        }
     }
 }

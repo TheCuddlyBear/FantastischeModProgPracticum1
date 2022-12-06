@@ -45,6 +45,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCurrentImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.infoOverMandelbrotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mandelBrotCanvas)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -168,7 +169,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveCurrentImageToolStripMenuItem});
+            this.saveCurrentImageToolStripMenuItem,
+            this.infoOverMandelbrotToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -176,13 +178,20 @@
             // saveCurrentImageToolStripMenuItem
             // 
             this.saveCurrentImageToolStripMenuItem.Name = "saveCurrentImageToolStripMenuItem";
-            this.saveCurrentImageToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveCurrentImageToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveCurrentImageToolStripMenuItem.Text = "Save Current Image";
             this.saveCurrentImageToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentImageToolStripMenuItem_Click);
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // infoOverMandelbrotToolStripMenuItem
+            // 
+            this.infoOverMandelbrotToolStripMenuItem.Name = "infoOverMandelbrotToolStripMenuItem";
+            this.infoOverMandelbrotToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.infoOverMandelbrotToolStripMenuItem.Text = "Info over mandelbrot";
+            this.infoOverMandelbrotToolStripMenuItem.Click += new System.EventHandler(this.infoOverMandelbrotToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -234,5 +243,6 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem saveCurrentImageToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
+        private ToolStripMenuItem infoOverMandelbrotToolStripMenuItem;
     }
 }
