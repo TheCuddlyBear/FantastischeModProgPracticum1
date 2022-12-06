@@ -15,6 +15,7 @@ namespace MandelBrot
             InitializeComponent();
         }
 
+        /*
         private PointF genMandelPunt(float a, float b, float x, float y)
         {
             return new PointF((a * a - b * b + x), (2 * a * b + y));
@@ -42,6 +43,7 @@ namespace MandelBrot
             } while (count < maxIterations && distanceToPoint < 2);
                 return count;
         }
+        
 
         private double Distance(PointF p1, PointF p2)
         {
@@ -53,26 +55,13 @@ namespace MandelBrot
             double dY = Math.Pow((p1Y - p2Y), 2);
             return Math.Sqrt(dX + dY);
         }
+        */
 
-       public Color GenRandomColor()
+        public Color GetColor(int iterations, int maxIterations)
         {
-            Random random = new Random();
-            int i = random.Next(1, 5);
+            //TODO: Color
 
-            switch (i)
-            {
-                case 1:
-                    return Color.FromArgb(76, 59, 77);
-                case 2:
-                    return Color.FromArgb(255, 238, 219);
-                case 3:
-                    return Color.FromArgb(173, 168, 182);
-                case 4:
-                    return Color.FromArgb(165, 56, 96);
-                case 5:
-                    return Color.FromArgb(97, 201, 168);
-            }
-            return Color.FromArgb(76, 59, 77);
+            return Color.Black;
         }
 
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)

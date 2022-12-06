@@ -44,7 +44,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCurrentImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveCurrentSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mandelBrotCanvas)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -169,8 +168,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveCurrentImageToolStripMenuItem,
-            this.saveCurrentSettingsToolStripMenuItem});
+            this.saveCurrentImageToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -181,12 +179,6 @@
             this.saveCurrentImageToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveCurrentImageToolStripMenuItem.Text = "Save Current Image";
             this.saveCurrentImageToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentImageToolStripMenuItem_Click);
-            // 
-            // saveCurrentSettingsToolStripMenuItem
-            // 
-            this.saveCurrentSettingsToolStripMenuItem.Name = "saveCurrentSettingsToolStripMenuItem";
-            this.saveCurrentSettingsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.saveCurrentSettingsToolStripMenuItem.Text = "Save Current Settings";
             // 
             // timer1
             // 
@@ -241,7 +233,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem saveCurrentImageToolStripMenuItem;
-        private ToolStripMenuItem saveCurrentSettingsToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
     }
 }
