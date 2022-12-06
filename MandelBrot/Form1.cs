@@ -74,13 +74,10 @@ namespace MandelBrot
             float xRange = width * scaleFactor;
             float yRange = height * scaleFactor;
 
-            Debug.WriteLine(xRange);
-            Debug.WriteLine(yRange);
-
-            float minX = midX - (xRange / 2);
-            float maxX = (xRange / 2) + midX;
-            float minY = midY - (yRange / 2);
-            float maxY = (yRange / 2) + midY;
+            float minX = (midX - (xRange / 2)) < -2 ? -2 : midX - (xRange / 2);
+            float maxX = ((xRange / 2) + midX) > 1 ? 1 : (xRange / 2) + midX;
+            float minY = (midY - (yRange / 2)) < -2 ? -2 : midY - (yRange / 2);
+            float maxY = ((yRange / 2) + midY) > 2 ? 2 : (yRange / 2) + midY;
 
 
             Bitmap bmp = new Bitmap(size.Width, size.Height);
