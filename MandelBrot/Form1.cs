@@ -13,16 +13,23 @@ namespace MandelBrot
 
         Color[] colors =
         {
-            Color.FromArgb(255, 0, 0),
-            Color.FromArgb(0, 255, 0),
-            Color.FromArgb(0, 0, 255)
+            Color.FromArgb(1, 255, 0, 0),
+            Color.FromArgb(1, 0, 255, 0),
+            Color.FromArgb(1, 0, 0, 255)
         };
 
-        public Color LinearInterpolation(Color color1, Color color2, int ratio) {
+        public Color interpolate(double iteration)
+        {
+            Color color1 = colors[(int)Math.Floor(iteration)];
+            Color color2 = colors[(int)Math.Floor(iteration) + 1];
+            return LinearInterpolation(color1, color2, iteration % 1);
+        }
+
+        public Color LinearInterpolation(Color color1, Color color2, double ratio) {
             int r = Convert.ToInt32(Math.Floor(Convert.ToDouble((color2.R - color1.R) * ratio + color1.R)));
             int g = Convert.ToInt32(Math.Floor(Convert.ToDouble((color2.G - color1.G) * ratio + color1.G)));
             int b = Convert.ToInt32(Math.Floor(Convert.ToDouble((color2.B - color1.B) * ratio + color1.B)));
-            return Color.FromArgb(r, g, b);
+            return Color.FromArgb(1, r, g, b);
         }
 
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
@@ -61,11 +68,9 @@ namespace MandelBrot
                     if (iteration < maxIterations)
                     {
                         Complex zn = new Complex(a, b);
-                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn))) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia)
-                        Color color1 = colors[Convert.ToInt32(Math.Floor(colorAlgorithm))];
-                        Color color2 = colors[Convert.ToInt32(Math.Floor(colorAlgorithm) + 1)];
+                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn)) / Math.Log(2)) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia)
                         //Color color = Utils.ColorFromHSV(0.95 + 5 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
-                        Color color = LinearInterpolation(color1, color2, iteration % 1);
+                        Color color = interpolate(colorAlgorithm);
                         mandelBitmap.SetPixel(pixelX, pixelY, color);
                     }
                     else
