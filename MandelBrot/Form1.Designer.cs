@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.mandelBrotCanvas = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,15 +38,11 @@
             this.scaleFactorTb = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.maxIterationsTb = new System.Windows.Forms.TextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCurrentImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.infoOverMandelbrotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mandelBrotCanvas)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,22 +135,6 @@
             this.maxIterationsTb.Size = new System.Drawing.Size(181, 23);
             this.maxIterationsTb.TabIndex = 10;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 431);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(607, 22);
-            this.statusStrip1.TabIndex = 12;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(26, 17);
-            this.statusLabel.Text = "Idle";
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -182,10 +161,6 @@
             this.saveCurrentImageToolStripMenuItem.Text = "Save Current Image";
             this.saveCurrentImageToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentImageToolStripMenuItem_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // infoOverMandelbrotToolStripMenuItem
             // 
             this.infoOverMandelbrotToolStripMenuItem.Name = "infoOverMandelbrotToolStripMenuItem";
@@ -197,8 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 453);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(607, 437);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.maxIterationsTb);
@@ -216,8 +190,6 @@
             this.Name = "Form1";
             this.Text = "Genereer vandaag jouw fantastische mandelbrot";
             ((System.ComponentModel.ISupportInitialize)(this.mandelBrotCanvas)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -237,12 +209,9 @@
         private TextBox scaleFactorTb;
         private Label label4;
         private TextBox maxIterationsTb;
-        private StatusStrip statusStrip1;
-        private ToolStripStatusLabel statusLabel;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem saveCurrentImageToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
         private ToolStripMenuItem infoOverMandelbrotToolStripMenuItem;
     }
 }

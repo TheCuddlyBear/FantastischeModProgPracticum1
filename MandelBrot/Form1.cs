@@ -6,20 +6,27 @@ namespace MandelBrot
 {
     public partial class Form1 : Form
     {
-
-        public TimeSpan duration;
-        public DateTime start;
-
         public Form1()
         {
             InitializeComponent();
         }
 
+        Color[] colors =
+        {
+            Color.FromArgb(255, 0, 0),
+            Color.FromArgb(0, 255, 0),
+            Color.FromArgb(0, 0, 255)
+        };
+
+        public Color LinearInterpolation(Color color1, Color color2, int ratio) {
+            int r = Convert.ToInt32(Math.Floor(Convert.ToDouble((color2.R - color1.R) * ratio + color1.R)));
+            int g = Convert.ToInt32(Math.Floor(Convert.ToDouble((color2.G - color1.G) * ratio + color1.G)));
+            int b = Convert.ToInt32(Math.Floor(Convert.ToDouble((color2.B - color1.B) * ratio + color1.B)));
+            return Color.FromArgb(r, g, b);
+        }
+
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
-            start = DateTime.Now;
-            timer1.Start();
-
             //converting the width and height to floats
             float width = Convert.ToSingle(size.Width);
             float height = Convert.ToSingle(size.Height);
@@ -33,7 +40,6 @@ namespace MandelBrot
             float maxX = ((xRange / 2) + midX) > 1 ? 1 : (xRange / 2) + midX;
             float minY = (midY - (yRange / 2)) < -2 ? -2 : midY - (yRange / 2);
             float maxY = ((yRange / 2) + midY) > 2 ? 2 : (yRange / 2) + midY;
-
 
             Bitmap mandelBitmap = new Bitmap(size.Width, size.Height);
 
@@ -56,25 +62,25 @@ namespace MandelBrot
                     {
                         Complex zn = new Complex(a, b);
                         double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn))) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia)
-                        Color color = Utils.ColorFromHSV(0.95 + 5 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
-                        mandelBitmap.SetPixel(dx, dy, color);
+                        Color color1 = colors[Convert.ToInt32(Math.Floor(colorAlgorithm))];
+                        Color color2 = colors[Convert.ToInt32(Math.Floor(colorAlgorithm) + 1)];
+                        //Color color = Utils.ColorFromHSV(0.95 + 5 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
+                        Color color = LinearInterpolation(color1, color2, iteration % 1);
+                        mandelBitmap.SetPixel(pixelX, pixelY, color);
                     }
                     else
                     {
-                        mandelBitmap.SetPixel(dx, dy, Color.Black);
+                        mandelBitmap.SetPixel(pixelX, pixelY, Color.Black);
                     }
                 }
 
 
             }
-            timer1.Stop();
-            statusLabel.Text = $"Time taken to generate: {duration.TotalMilliseconds} ms";
             return mandelBitmap;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            statusLabel.Text = "Generating image...";
             float midX = float.Parse(midXTb.Text) * -1;
             float midY = float.Parse(midYTb.Text) * -1;
             float scaleFactor = float.Parse(scaleFactorTb.Text);
@@ -85,12 +91,6 @@ namespace MandelBrot
             mandelBrotCanvas.Image = bmp;
 
         }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            duration = DateTime.Now - start;
-        }
-
         private void saveCurrentImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Utils.SavePictureBoxImage(mandelBrotCanvas); // See Utils class for the code
