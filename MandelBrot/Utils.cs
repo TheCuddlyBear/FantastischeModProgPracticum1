@@ -14,13 +14,13 @@ namespace MandelBrot
 
         }
 
-        public static void SavePictureBoxImage(PictureBox box)
+        public static void SavePictureBoxImage(Panel box)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = @"PNG|*.png" })
             {
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    box.Image.Save(saveFileDialog.FileName);
+                    box.BackgroundImage.Save(saveFileDialog.FileName);
                 }
             }
         }

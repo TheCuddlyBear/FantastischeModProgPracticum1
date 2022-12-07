@@ -69,14 +69,14 @@ namespace MandelBrot
             float scaleFactor = float.Parse(scaleFactorTb.Text);
             int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
 
-            Bitmap bmp = GenMandelImage(mandelBrotCanvas.Size, midX, midY, scaleFactor, maxIterations);
+            Bitmap bmp = GenMandelImage(panel1.Size, midX, midY, scaleFactor, maxIterations);
 
-            mandelBrotCanvas.Image = bmp;
+            panel1.BackgroundImage = bmp;
 
         }
         private void saveCurrentImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utils.SavePictureBoxImage(mandelBrotCanvas); // See Utils class for the code
+            Utils.SavePictureBoxImage(panel1); // See Utils class for the code
         }
 
         private void infoOverMandelbrotToolStripMenuItem_Click(object sender, EventArgs e)
