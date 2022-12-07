@@ -38,13 +38,13 @@ namespace MandelBrot
             Bitmap mandelBitmap = new Bitmap(size.Width, size.Height);
 
             // checking each x and y in the bitmap and generating its color
-            for(int dy = 0; dy < size.Height; dy++)
+            for(int pixelY = 0; pixelY < size.Height; pixelY++)
             {
-                for(int dx = 0; dx < size.Width; dx++)
+                for(int pixelX = 0; pixelX < size.Width; pixelX++)
                 {
                     int iteration = 0;
-                    double x = minX + (maxX - minX) * dx / (size.Width - 1);
-                    double y = minY + (maxY - minY) * dy / (size.Height - 1);
+                    double x = minX + (maxX - minX) * pixelX / (size.Width);
+                    double y = minY + (maxY - minY) * pixelY / (size.Height);
 
                     double a = x; double b = y;
                     do
@@ -56,7 +56,7 @@ namespace MandelBrot
                     {
                         Complex zn = new Complex(a, b);
                         double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn))) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia)
-                        Color color = Utils.ColorFromHSV(0.95 + 10 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
+                        Color color = Utils.ColorFromHSV(0.95 + 5 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
                         mandelBitmap.SetPixel(dx, dy, color);
                     }
                     else
@@ -75,8 +75,8 @@ namespace MandelBrot
         private void button1_Click(object sender, EventArgs e)
         {
             statusLabel.Text = "Generating image...";
-            float midX = float.Parse(midXTb.Text);
-            float midY = float.Parse(midYTb.Text);
+            float midX = float.Parse(midXTb.Text) * -1;
+            float midY = float.Parse(midYTb.Text) * -1;
             float scaleFactor = float.Parse(scaleFactorTb.Text);
             int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
 
