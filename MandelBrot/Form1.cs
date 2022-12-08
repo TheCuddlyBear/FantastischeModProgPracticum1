@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
 
@@ -6,10 +8,25 @@ namespace MandelBrot
 {
     public partial class Form1 : Form
     {
+
+        Form thisForm;
         public Form1()
         {
             InitializeComponent();
+
+            float midX = float.Parse(midXTb.Text) * -1;
+            float midY = float.Parse(midYTb.Text) * -1;
+            float scaleFactor = float.Parse(scaleFactorTb.Text);
+            int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
+
+            Bitmap bmp = GenMandelImage(panel1.Size, midX, midY, scaleFactor, maxIterations);
+
+            panel1.BackgroundImage = bmp;
+
+            thisForm = this;
         }
+
+        // Textbox values
 
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
@@ -22,10 +39,10 @@ namespace MandelBrot
             float yRange = height * scaleFactor;
 
             // Calculating the minimum of x and y, which can never exceed the intervals [-2,1] and [-2, 2]
-            float minX = (midX - (xRange / 2)) < -2 ? -2 : midX - (xRange / 2);
-            float maxX = ((xRange / 2) + midX) > 1 ? 1 : (xRange / 2) + midX;
-            float minY = (midY - (yRange / 2)) < -2 ? -2 : midY - (yRange / 2);
-            float maxY = ((yRange / 2) + midY) > 2 ? 2 : (yRange / 2) + midY;
+            float minX = (midX - (xRange / 2));
+            float maxX = ((xRange / 2) + midX);
+            float minY = (midY - (yRange / 2));
+            float maxY = ((yRange / 2) + midY);
 
             Bitmap mandelBitmap = new Bitmap(size.Width, size.Height);
 
@@ -85,6 +102,80 @@ namespace MandelBrot
             process.StartInfo.UseShellExecute = true;
             process.StartInfo.FileName = "https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set";
             process.Start();
+        }
+
+        private void superSecretToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Form2();
+            form.Show();
+        }
+
+        private void panel1_MouseClick(object sender, MouseEventArgs e)
+        {
+            float midX = float.Parse(midXTb.Text);
+            float midY = float.Parse(midYTb.Text);
+            float pixelX = e.X;
+            float pixelY = e.Y;
+
+
+
+
+            if (e.Button == MouseButtons.Right) 
+            {
+
+                float oldScaleFactor = float.Parse(scaleFactorTb.Text);
+                float newScaleFactor = oldScaleFactor / 0.8f;
+
+                float xRange = panel1.Width * newScaleFactor;
+                float yRange = panel1.Height * newScaleFactor;
+
+                float minX = (midX - (xRange / 2));
+                float maxX = ((xRange / 2) + midX);
+                float minY = (midY - (yRange / 2));
+                float maxY = ((yRange / 2) + midY);
+
+                float x = minX + (maxX - minX) * pixelX / (panel1.Width);
+                float y = minY + (maxY - minY) * pixelY / (panel1.Height);
+
+                midXTb.Text = x.ToString();
+                midYTb.Text = y.ToString();
+                scaleFactorTb.Text = newScaleFactor.ToString();
+
+                Bitmap bmp = GenMandelImage(panel1.Size, x, y, newScaleFactor, int.Parse(maxIterationsTb.Text));
+
+                panel1.BackgroundImage = bmp;
+            }else if(e.Button == MouseButtons.Left)
+            {
+                float oldScaleFactor = float.Parse(scaleFactorTb.Text);
+                float newScaleFactor = oldScaleFactor * 0.8f;
+
+                float xRange = panel1.Width * newScaleFactor;
+                float yRange = panel1.Height * newScaleFactor;
+
+                float minX = (midX - (xRange / 2));
+                float maxX = ((xRange / 2) + midX);
+                float minY = (midY - (yRange / 2));
+                float maxY = ((yRange / 2) + midY);
+
+                float x = minX + (maxX - minX) * pixelX / (panel1.Width);
+                float y = minY + (maxY - minY) * pixelY / (panel1.Height);
+
+                midXTb.Text = x.ToString();
+                midYTb.Text = y.ToString();
+                scaleFactorTb.Text = newScaleFactor.ToString();
+
+                Bitmap bmp = GenMandelImage(panel1.Size, x, y, newScaleFactor, int.Parse(maxIterationsTb.Text));
+
+                panel1.BackgroundImage = bmp;
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            thisForm.Close();
+            Form form2 = new Form2();
+            form2.Show();
         }
     }
 }

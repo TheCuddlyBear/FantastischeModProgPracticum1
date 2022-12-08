@@ -41,7 +41,9 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCurrentImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoOverMandelbrotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.superSecretToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +51,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(478, 332);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(207, 236);
+            this.button1.Size = new System.Drawing.Size(207, 116);
             this.button1.TabIndex = 1;
             this.button1.Text = "Genereer Mandelbrot";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,6 +72,7 @@
             this.midXTb.Name = "midXTb";
             this.midXTb.Size = new System.Drawing.Size(206, 27);
             this.midXTb.TabIndex = 4;
+            this.midXTb.Text = "0";
             // 
             // label2
             // 
@@ -86,6 +89,7 @@
             this.midYTb.Name = "midYTb";
             this.midYTb.Size = new System.Drawing.Size(206, 27);
             this.midYTb.TabIndex = 6;
+            this.midYTb.Text = "0";
             // 
             // label3
             // 
@@ -102,6 +106,7 @@
             this.scaleFactorTb.Name = "scaleFactorTb";
             this.scaleFactorTb.Size = new System.Drawing.Size(206, 27);
             this.scaleFactorTb.TabIndex = 8;
+            this.scaleFactorTb.Text = "0,01";
             // 
             // label4
             // 
@@ -118,6 +123,7 @@
             this.maxIterationsTb.Name = "maxIterationsTb";
             this.maxIterationsTb.Size = new System.Drawing.Size(206, 27);
             this.maxIterationsTb.TabIndex = 10;
+            this.maxIterationsTb.Text = "1000";
             // 
             // menuStrip1
             // 
@@ -135,7 +141,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveCurrentImageToolStripMenuItem,
-            this.infoOverMandelbrotToolStripMenuItem});
+            this.infoOverMandelbrotToolStripMenuItem,
+            this.superSecretToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -154,6 +161,13 @@
             this.infoOverMandelbrotToolStripMenuItem.Text = "Info over mandelbrot";
             this.infoOverMandelbrotToolStripMenuItem.Click += new System.EventHandler(this.infoOverMandelbrotToolStripMenuItem_Click);
             // 
+            // superSecretToolStripMenuItem
+            // 
+            this.superSecretToolStripMenuItem.Name = "superSecretToolStripMenuItem";
+            this.superSecretToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
+            this.superSecretToolStripMenuItem.Text = "super secret";
+            this.superSecretToolStripMenuItem.Click += new System.EventHandler(this.superSecretToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
@@ -161,12 +175,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(457, 533);
             this.panel1.TabIndex = 14;
+            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(478, 457);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(207, 114);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "Voorbeelden";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 583);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label4);
@@ -204,5 +230,7 @@
         private ToolStripMenuItem saveCurrentImageToolStripMenuItem;
         private ToolStripMenuItem infoOverMandelbrotToolStripMenuItem;
         private Panel panel1;
+        private ToolStripMenuItem superSecretToolStripMenuItem;
+        private Button button2;
     }
 }
