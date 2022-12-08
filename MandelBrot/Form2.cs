@@ -37,6 +37,10 @@ namespace MandelBrot
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
 
+            Button genButton = (Button)mainForm.Controls["button1"];
+            genButton.PerformClick();
+
+
             thisForm.Close();
         }
 
@@ -53,6 +57,10 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            Button genButton = (Button)mainForm.Controls["button1"];
+            genButton.PerformClick();
+
             thisForm.Close();
         }
 
@@ -70,6 +78,10 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            Button genButton = (Button)mainForm.Controls["button1"];
+            genButton.PerformClick();
+
             thisForm.Close();
         }
 
@@ -86,6 +98,10 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            Button genButton = (Button)mainForm.Controls["button1"];
+            genButton.PerformClick();
+
             thisForm.Close();
         }
 
@@ -102,6 +118,10 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            Button genButton = (Button)mainForm.Controls["button1"];
+            genButton.PerformClick();
+
             thisForm.Close();
         }
 
@@ -118,6 +138,10 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            Button genButton = (Button)mainForm.Controls["button1"];
+            genButton.PerformClick();
+
             thisForm.Close();
         }
     }
