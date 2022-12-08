@@ -84,5 +84,65 @@ namespace MandelBrot
             form1.Show();
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            thisForm.Close();
+            Form form1 = new Form1();
+
+            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
+            midXTb.Text = "1,626583";
+
+            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
+            midYTb.Text = "-0,00010901131";
+
+            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            scaleFactorTb.Text = "5,902962E-05";
+
+            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            maxIterationsTb.Text = "1000";
+
+            form1.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            thisForm.Close();
+            Form form1 = new Form1();
+
+            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
+            midXTb.Text = "0,16070803";
+
+            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
+            midYTb.Text = "-1,037048";
+
+            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            scaleFactorTb.Text = "2,596151E-06";
+
+            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            maxIterationsTb.Text = "1000";
+
+            form1.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            thisForm.Close();
+            Form form1 = new Form1();
+
+            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
+            midXTb.Text = "-0,4143958";
+
+            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
+            midYTb.Text = "0,33326638";
+
+            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            scaleFactorTb.Text = "6,338259E-06";
+
+            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            maxIterationsTb.Text = "1000";
+
+            form1.Show();
+        }
     }
 }
