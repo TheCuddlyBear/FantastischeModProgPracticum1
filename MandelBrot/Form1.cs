@@ -81,8 +81,8 @@ namespace MandelBrot
 
         private void button1_Click(object sender, EventArgs e)
         {
-            float midX = float.Parse(midXTb.Text) * -1;
-            float midY = float.Parse(midYTb.Text) * -1;
+            float midX = float.Parse(midXTb.Text);
+            float midY = float.Parse(midYTb.Text);
             float scaleFactor = float.Parse(scaleFactorTb.Text);
             int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
 
@@ -173,7 +173,6 @@ namespace MandelBrot
 
         private void button2_Click(object sender, EventArgs e)
         {
-            thisForm.Close();
             Form form2 = new Form2();
             form2.Show();
         }

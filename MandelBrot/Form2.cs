@@ -14,135 +14,111 @@ namespace MandelBrot
     {
 
         public Form thisForm;
+        public Form mainForm;
         public Form2()
         {
             InitializeComponent();
             thisForm = this;
+            mainForm = Application.OpenForms[0];
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            thisForm.Close();
-            Form form1 = new Form1();
-            
-            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
-            midXTb.Text = "-0,0040685963";
 
-            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
-            midYTb.Text = "-0,8089094";
+            TextBox midXTb = (TextBox)mainForm.Controls["midXTb"];
+            midXTb.Text = "0,0040685963";
 
-            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            TextBox midYTb = (TextBox)mainForm.Controls["midYTb"];
+            midYTb.Text = "0,8089094";
+
+            TextBox scaleFactorTb = (TextBox)mainForm.Controls["scaleFactorTb"];
             scaleFactorTb.Text = "3,6893514E-08";
 
-            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
 
-            form1.Show();
-
+            thisForm.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            TextBox midXTb = (TextBox)mainForm.Controls["midXTb"];
+            midXTb.Text = "-0,006875";
 
-            thisForm.Close();
-            Form form1 = new Form1();
+            TextBox midYTb = (TextBox)mainForm.Controls["midYTb"];
+            midYTb.Text = "-0,80638671875";
 
-            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
-            midXTb.Text = "0,006875";
-
-            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
-            midYTb.Text = "0,80638671875";
-
-            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            TextBox scaleFactorTb = (TextBox)mainForm.Controls["scaleFactorTb"];
             scaleFactorTb.Text = "9,765625E-06";
 
-            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
-
-            form1.Show();
-
+            thisForm.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
-            thisForm.Close();
-            Form form1 = new Form1();
+            TextBox midXTb = (TextBox)mainForm.Controls["midXTb"];
+            midXTb.Text = "0,0030880242";
 
-            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
-            midXTb.Text = "-0,0030880242";
+            TextBox midYTb = (TextBox)mainForm.Controls["midYTb"];
+            midYTb.Text = "0,8170546";
 
-            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
-            midYTb.Text = "-0,8170546";
-
-            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            TextBox scaleFactorTb = (TextBox)mainForm.Controls["scaleFactorTb"];
             scaleFactorTb.Text = "2,1990243E-07";
 
-            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
-
-            form1.Show();
-
+            thisForm.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            thisForm.Close();
-            Form form1 = new Form1();
+            TextBox midXTb = (TextBox)mainForm.Controls["midXTb"];
+            midXTb.Text = "-1,626583";
 
-            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
-            midXTb.Text = "1,626583";
+            TextBox midYTb = (TextBox)mainForm.Controls["midYTb"];
+            midYTb.Text = "0,00010901131";
 
-            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
-            midYTb.Text = "-0,00010901131";
-
-            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            TextBox scaleFactorTb = (TextBox)mainForm.Controls["scaleFactorTb"];
             scaleFactorTb.Text = "5,902962E-05";
 
-            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
-
-            form1.Show();
+            thisForm.Close();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            thisForm.Close();
-            Form form1 = new Form1();
+            TextBox midXTb = (TextBox)mainForm.Controls["midXTb"];
+            midXTb.Text = "-0,16070803";
 
-            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
-            midXTb.Text = "0,16070803";
+            TextBox midYTb = (TextBox)mainForm.Controls["midYTb"];
+            midYTb.Text = "1,037048";
 
-            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
-            midYTb.Text = "-1,037048";
-
-            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            TextBox scaleFactorTb = (TextBox)mainForm.Controls["scaleFactorTb"];
             scaleFactorTb.Text = "2,596151E-06";
 
-            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
-
-            form1.Show();
+            thisForm.Close();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            thisForm.Close();
-            Form form1 = new Form1();
+            TextBox midXTb = (TextBox)mainForm.Controls["midXTb"];
+            midXTb.Text = "0,4143958";
 
-            TextBox midXTb = (TextBox)form1.Controls["midXTb"];
-            midXTb.Text = "-0,4143958";
+            TextBox midYTb = (TextBox)mainForm.Controls["midYTb"];
+            midYTb.Text = "-0,33326638";
 
-            TextBox midYTb = (TextBox)form1.Controls["midYTb"];
-            midYTb.Text = "0,33326638";
-
-            TextBox scaleFactorTb = (TextBox)form1.Controls["scaleFactorTb"];
+            TextBox scaleFactorTb = (TextBox)mainForm.Controls["scaleFactorTb"];
             scaleFactorTb.Text = "6,338259E-06";
 
-            TextBox maxIterationsTb = (TextBox)form1.Controls["maxIterationsTb"];
+            TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
-
-            form1.Show();
+            thisForm.Close();
         }
     }
 }
