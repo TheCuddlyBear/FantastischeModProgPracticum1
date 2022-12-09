@@ -78,14 +78,26 @@ namespace MandelBrot
 
         private void button1_Click(object sender, EventArgs e)
         {
-            float midX = float.Parse(midXTb.Text);
-            float midY = float.Parse(midYTb.Text);
-            float scaleFactor = float.Parse(scaleFactorTb.Text);
-            int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
 
-            Bitmap bmp = GenMandelImage(panel1.Size, midX, midY, scaleFactor, maxIterations);
+            if (string.IsNullOrEmpty(midXTb.Text) || string.IsNullOrEmpty(midYTb.Text) | string.IsNullOrEmpty(maxIterationsTb.Text) || string.IsNullOrEmpty(scaleFactorTb.Text))
+            { 
+                MessageBox.Show("Je hebt niet alle velden ingevuld!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }else
+            {
+                float midX = float.Parse(midXTb.Text);
+                float midY = float.Parse(midYTb.Text);
+                float scaleFactor = float.Parse(scaleFactorTb.Text);
+                int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
 
-            panel1.BackgroundImage = bmp;
+                Properties.Settings.Default.midX = midX;
+                Properties.Settings.Default.midY = midY;
+                Properties.Settings.Default.scaleFactor = scaleFactor;
+                Properties.Settings.Default.maxIter = maxIterations;
+
+                Bitmap bmp = GenMandelImage(panel1.Size, midX, midY, scaleFactor, maxIterations);
+
+                panel1.BackgroundImage = bmp;
+            }
 
         }
         private void saveCurrentImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -109,8 +121,8 @@ namespace MandelBrot
 
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
-            float midX = float.Parse(midXTb.Text);
-            float midY = float.Parse(midYTb.Text);
+            float midX = string.IsNullOrEmpty(midXTb.Text) ? Properties.Settings.Default.midX : float.Parse(midXTb.Text);
+            float midY = string.IsNullOrEmpty(midYTb.Text) ? Properties.Settings.Default.midY : float.Parse(midYTb.Text);
             float pixelX = e.X;
             float pixelY = e.Y;
 
@@ -137,6 +149,13 @@ namespace MandelBrot
                 midXTb.Text = x.ToString();
                 midYTb.Text = y.ToString();
                 scaleFactorTb.Text = newScaleFactor.ToString();
+                int maxIter = string.IsNullOrEmpty(maxIterationsTb.Text) ? Properties.Settings.Default.maxIter : int.Parse(maxIterationsTb.Text);
+                maxIterationsTb.Text = maxIter.ToString();
+
+                Properties.Settings.Default.midX = x;
+                Properties.Settings.Default.midY = y;
+                Properties.Settings.Default.scaleFactor = newScaleFactor;
+                Properties.Settings.Default.maxIter = maxIter;
 
                 Bitmap bmp = GenMandelImage(panel1.Size, x, y, newScaleFactor, int.Parse(maxIterationsTb.Text));
 
@@ -160,6 +179,13 @@ namespace MandelBrot
                 midXTb.Text = x.ToString();
                 midYTb.Text = y.ToString();
                 scaleFactorTb.Text = newScaleFactor.ToString();
+                int maxIter = string.IsNullOrEmpty(maxIterationsTb.Text) ? Properties.Settings.Default.maxIter : int.Parse(maxIterationsTb.Text);
+                maxIterationsTb.Text = maxIter.ToString();
+
+                Properties.Settings.Default.midX = x;
+                Properties.Settings.Default.midY = y;
+                Properties.Settings.Default.scaleFactor = newScaleFactor;
+                Properties.Settings.Default.maxIter = maxIter;
 
                 Bitmap bmp = GenMandelImage(panel1.Size, x, y, newScaleFactor, int.Parse(maxIterationsTb.Text));
 
