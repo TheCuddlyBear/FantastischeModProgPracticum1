@@ -40,8 +40,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCurrentImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoOverMandelbrotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.superSecretToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -159,9 +157,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveCurrentImageToolStripMenuItem,
-            this.infoOverMandelbrotToolStripMenuItem,
-            this.superSecretToolStripMenuItem});
+            this.saveCurrentImageToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -169,23 +165,9 @@
             // saveCurrentImageToolStripMenuItem
             // 
             this.saveCurrentImageToolStripMenuItem.Name = "saveCurrentImageToolStripMenuItem";
-            this.saveCurrentImageToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.saveCurrentImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveCurrentImageToolStripMenuItem.Text = "Save Current Image";
             this.saveCurrentImageToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentImageToolStripMenuItem_Click);
-            // 
-            // infoOverMandelbrotToolStripMenuItem
-            // 
-            this.infoOverMandelbrotToolStripMenuItem.Name = "infoOverMandelbrotToolStripMenuItem";
-            this.infoOverMandelbrotToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.infoOverMandelbrotToolStripMenuItem.Text = "Info over mandelbrot";
-            this.infoOverMandelbrotToolStripMenuItem.Click += new System.EventHandler(this.infoOverMandelbrotToolStripMenuItem_Click);
-            // 
-            // superSecretToolStripMenuItem
-            // 
-            this.superSecretToolStripMenuItem.Name = "superSecretToolStripMenuItem";
-            this.superSecretToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.superSecretToolStripMenuItem.Text = "super secret";
-            this.superSecretToolStripMenuItem.Click += new System.EventHandler(this.superSecretToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -374,9 +356,7 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem saveCurrentImageToolStripMenuItem;
-        private ToolStripMenuItem infoOverMandelbrotToolStripMenuItem;
         private Panel panel1;
-        private ToolStripMenuItem superSecretToolStripMenuItem;
         private Button button2;
         private GroupBox groupBox1;
         private GroupBox groupBox2;

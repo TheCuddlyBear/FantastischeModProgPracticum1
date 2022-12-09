@@ -26,7 +26,6 @@ namespace MandelBrot
             thisForm = this;
         }
 
-
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
             //converting the width and height to floats
@@ -106,20 +105,6 @@ namespace MandelBrot
             Utils.SavePictureBoxImage(panel1); // See Utils class for the code
         }
 
-        private void infoOverMandelbrotToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process process = new Process();
-            process.StartInfo.UseShellExecute = true;
-            process.StartInfo.FileName = "https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set";
-            process.Start();
-        }
-
-        private void superSecretToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form form = new Form2();
-            form.Show();
-        }
-
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
             float midX = string.IsNullOrEmpty(midXTb.Text) ? Properties.Settings.Default.midX : float.Parse(midXTb.Text);
@@ -127,12 +112,9 @@ namespace MandelBrot
             float pixelX = e.X;
             float pixelY = e.Y;
 
-
-
-
             if (e.Button == MouseButtons.Right) 
             {
-
+                // If one of the fields is empty, the program will grab the saved value from the application settings to be able to continue zooming in
                 float oldScaleFactor = string.IsNullOrEmpty(scaleFactorTb.Text) ? Properties.Settings.Default.scaleFactor : float.Parse(scaleFactorTb.Text);
                 float newScaleFactor = oldScaleFactor / 0.8f;
 
@@ -153,6 +135,7 @@ namespace MandelBrot
                 int maxIter = string.IsNullOrEmpty(maxIterationsTb.Text) ? Properties.Settings.Default.maxIter : int.Parse(maxIterationsTb.Text);
                 maxIterationsTb.Text = maxIter.ToString();
 
+                //save new values to application settings
                 Properties.Settings.Default.midX = x;
                 Properties.Settings.Default.midY = y;
                 Properties.Settings.Default.scaleFactor = newScaleFactor;
@@ -163,6 +146,7 @@ namespace MandelBrot
                 panel1.BackgroundImage = bmp;
             }else if(e.Button == MouseButtons.Left)
             {
+                // If one of the fields is empty, the program will grab the saved value from the application settings to be able to continue zooming in
                 float oldScaleFactor = string.IsNullOrEmpty(scaleFactorTb.Text) ? Properties.Settings.Default.scaleFactor : float.Parse(scaleFactorTb.Text);
                 float newScaleFactor = oldScaleFactor * 0.8f;
 
@@ -183,6 +167,7 @@ namespace MandelBrot
                 int maxIter = string.IsNullOrEmpty(maxIterationsTb.Text) ? Properties.Settings.Default.maxIter : int.Parse(maxIterationsTb.Text);
                 maxIterationsTb.Text = maxIter.ToString();
 
+                //save new values to application settings
                 Properties.Settings.Default.midX = x;
                 Properties.Settings.Default.midY = y;
                 Properties.Settings.Default.scaleFactor = newScaleFactor;
