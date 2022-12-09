@@ -73,8 +73,6 @@ namespace MandelBrot
                         mandelBitmap.SetPixel(pixelX, pixelY, Color.Black);
                     }
                 }
-
-
             }
             return mandelBitmap;
         }
