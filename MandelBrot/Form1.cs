@@ -51,7 +51,7 @@ namespace MandelBrot
                 for(int pixelX = 0; pixelX < size.Width; pixelX++)
                 {
                     int iteration = 0;
-                    double x = minX + (maxX - minX) * pixelX / (size.Width);
+                    double x = minX + (maxX - minX) * pixelX / (size.Width); //converting coordinates of bitmap to mandelbrot coords
                     double y = minY + (maxY - minY) * pixelY / (size.Height);
 
                     double a = x; double b = y;
@@ -78,7 +78,7 @@ namespace MandelBrot
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // Check if one of the fields is empty, if so throw an error
             if (string.IsNullOrEmpty(midXTb.Text) || string.IsNullOrEmpty(midYTb.Text) | string.IsNullOrEmpty(maxIterationsTb.Text) || string.IsNullOrEmpty(scaleFactorTb.Text))
             { 
                 MessageBox.Show("Je hebt niet alle velden ingevuld!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,6 +89,7 @@ namespace MandelBrot
                 float scaleFactor = float.Parse(scaleFactorTb.Text);
                 int maxIterations = Convert.ToInt32(maxIterationsTb.Text);
 
+                // Save values to application setting storage
                 Properties.Settings.Default.midX = midX;
                 Properties.Settings.Default.midY = midY;
                 Properties.Settings.Default.scaleFactor = scaleFactor;
@@ -132,7 +133,7 @@ namespace MandelBrot
             if (e.Button == MouseButtons.Right) 
             {
 
-                float oldScaleFactor = float.Parse(scaleFactorTb.Text);
+                float oldScaleFactor = string.IsNullOrEmpty(scaleFactorTb.Text) ? Properties.Settings.Default.scaleFactor : float.Parse(scaleFactorTb.Text);
                 float newScaleFactor = oldScaleFactor / 0.8f;
 
                 float xRange = panel1.Width * newScaleFactor;
@@ -162,7 +163,7 @@ namespace MandelBrot
                 panel1.BackgroundImage = bmp;
             }else if(e.Button == MouseButtons.Left)
             {
-                float oldScaleFactor = float.Parse(scaleFactorTb.Text);
+                float oldScaleFactor = string.IsNullOrEmpty(scaleFactorTb.Text) ? Properties.Settings.Default.scaleFactor : float.Parse(scaleFactorTb.Text);
                 float newScaleFactor = oldScaleFactor * 0.8f;
 
                 float xRange = panel1.Width * newScaleFactor;
