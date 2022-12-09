@@ -15,11 +15,13 @@ namespace MandelBrot
 
         public Form thisForm;
         public Form mainForm;
+        public GroupBox groupBox;
         public Form2()
         {
             InitializeComponent();
             thisForm = this;
             mainForm = Application.OpenForms[0];
+            groupBox = (GroupBox)mainForm.Controls["groupBox2"];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,6 +38,15 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            TrackBar hue = (TrackBar)groupBox.Controls["hue"];
+            hue.Value = 360;
+
+            TrackBar sat = (TrackBar)groupBox.Controls["saturation"];
+            sat.Value = 60;
+
+            TrackBar light = (TrackBar)groupBox.Controls["lightness"];
+            light.Value = 100;
 
             Button genButton = (Button)mainForm.Controls["button1"];
             genButton.PerformClick();
@@ -58,6 +69,15 @@ namespace MandelBrot
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
 
+            TrackBar hue = (TrackBar)groupBox.Controls["hue"];
+            hue.Value = 250;
+
+            TrackBar sat = (TrackBar)groupBox.Controls["saturation"];
+            sat.Value = 81;
+
+            TrackBar light = (TrackBar)groupBox.Controls["lightness"];
+            light.Value = 100;
+
             Button genButton = (Button)mainForm.Controls["button1"];
             genButton.PerformClick();
 
@@ -79,6 +99,16 @@ namespace MandelBrot
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
 
+            TrackBar hue = (TrackBar)groupBox.Controls["hue"];
+            hue.Value = 241;
+
+            TrackBar sat = (TrackBar)groupBox.Controls["saturation"];
+            sat.Value = 64;
+
+            TrackBar light = (TrackBar)groupBox.Controls["lightness"];
+            light.Value = 100;
+
+
             Button genButton = (Button)mainForm.Controls["button1"];
             genButton.PerformClick();
 
@@ -98,6 +128,16 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            TrackBar hue = (TrackBar)groupBox.Controls["hue"];
+            hue.Value = 360;
+
+            TrackBar sat = (TrackBar)groupBox.Controls["saturation"];
+            sat.Value = 60;
+
+            TrackBar light = (TrackBar)groupBox.Controls["lightness"];
+            light.Value = 100;
+
 
             Button genButton = (Button)mainForm.Controls["button1"];
             genButton.PerformClick();
@@ -119,6 +159,16 @@ namespace MandelBrot
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
 
+            TrackBar hue = (TrackBar)groupBox.Controls["hue"];
+            hue.Value = 360;
+
+            TrackBar sat = (TrackBar)groupBox.Controls["saturation"];
+            sat.Value = 60;
+
+            TrackBar light = (TrackBar)groupBox.Controls["lightness"];
+            light.Value = 100;
+
+
             Button genButton = (Button)mainForm.Controls["button1"];
             genButton.PerformClick();
 
@@ -138,6 +188,16 @@ namespace MandelBrot
 
             TextBox maxIterationsTb = (TextBox)mainForm.Controls["maxIterationsTb"];
             maxIterationsTb.Text = "1000";
+
+            TrackBar hue = (TrackBar)groupBox.Controls["hue"];
+            hue.Value = 65;
+
+            TrackBar sat = (TrackBar)groupBox.Controls["saturation"];
+            sat.Value = 65;
+
+            TrackBar light = (TrackBar)groupBox.Controls["lightness"];
+            light.Value = 100;
+
 
             Button genButton = (Button)mainForm.Controls["button1"];
             genButton.PerformClick();

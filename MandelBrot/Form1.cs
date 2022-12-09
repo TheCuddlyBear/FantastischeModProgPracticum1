@@ -26,7 +26,6 @@ namespace MandelBrot
             thisForm = this;
         }
 
-        // Textbox values
 
         public Bitmap GenMandelImage(Size size, float midX, float midY, float scaleFactor, int maxIterations)
         {
@@ -64,8 +63,8 @@ namespace MandelBrot
                     if (iteration < maxIterations)
                     {
                         Complex zn = new Complex(a, b);
-                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn)) / Math.Log(2)) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia)
-                        Color color = Utils.ColorFromHSV(0.95 + 5 * colorAlgorithm, 0.6, 1.0); // Generating the color from HSV values
+                        double colorAlgorithm = iteration + 1 - Math.Log(Math.Log(Complex.Abs(zn)) / Math.Log(2)) / Math.Log(2); // Continuous Smooth coloring algorithm (see wikipedia
+                        Color color = Utils.ColorFromHSV((0.95 + 5 * colorAlgorithm)%hue.Value, (double)saturation.Value/100, (double)lightness.Value / 100); // Generating the color from HSV values
                         mandelBitmap.SetPixel(pixelX, pixelY, color);
                     }
                     else
@@ -173,6 +172,27 @@ namespace MandelBrot
         {
             Form form2 = new Form2();
             form2.Show();
+        }
+
+        private void hue_MouseUp(object sender, MouseEventArgs e)
+        {
+            huelabel.Text = hue.Value.ToString();
+
+            button1.PerformClick();
+        }
+
+        private void saturation_MouseUp(object sender, MouseEventArgs e)
+        {
+            satlabel.Text = saturation.Value.ToString();
+
+            button1.PerformClick();
+        }
+
+        private void lightness_MouseUp(object sender, MouseEventArgs e)
+        {
+            lightlabel.Text = lightness.Value.ToString();
+
+            button1.PerformClick();
         }
     }
 }
